@@ -1,5 +1,9 @@
 import tweepy
 import datetime
+import os
+import requests
+import cryptocompare
+#import reddit.py
 #import Tkinter
 
 
@@ -29,7 +33,7 @@ def retrieve_timeline( api, user ):
 
 # gets the current time
 CURRENT_TIME = datetime.datetime.utcnow()# - datetime.timedelta(30)
-
+"""
 # User name for possible user you want to favorite, retweet, or quote tweet
 USER_NAME = "tcostigan33"
 
@@ -67,3 +71,20 @@ for tweet in user_tweets:
         # Prints out whatever they tweeted just like above
         #print(f"{tweet._json['user']['name']} tweeted {tweet._json['text']} at {tweet._json['created_at']}")
 
+response = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+data = response.json()
+btc = data["bpi"]["USD"]["rate"]
+api.update_status(f"Bitcoin's current price: {btc} (USD) \n\t Prices obtained from: https://www.coindesk.com/price/\
+bitcoin\n\t Powered by CoinDesk")
+"""
+btc = cryptocompare.get_price('BTC', currency = 'USD')['BTC']
+api.update_status(f"Bitcoin's current price: {btc['USD']} (USD) #Bitcoin #Crypto #BTC")
+
+eth = cryptocompare.get_price('ETH', currency = 'USD')['ETH']
+api.update_status(f"Ethereum's current price: {eth['USD']} (USD) #Ethereum #Crypto #ETH")
+
+doge = cryptocompare.get_price('DOGE', currency = 'USD')['DOGE']
+api.update_status(f"Dogecoin's current price: {doge['USD']} (USD) #Dogecoin #Crypto #DOGE")
+
+safemoon = cryptocompare.get_price('SAFEMOON', currency = 'USD')['SAFEMOON']
+api.update_status(f"Safemoon's current price: {safemoon['USD']} (USD) #Safemoon #Crypto #SAFEMOON")
