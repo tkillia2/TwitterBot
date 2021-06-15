@@ -3,69 +3,67 @@ import datetime
 #import Tkinter
 
 
-consumer_key = 'wNpBZP70RBB29JVsTsnYYG4nX'
-consumer_secret = 'iW9hXzNVnkAs3LXoxo7xQvJvPBny3iLSXCzn0P7xHMwj0cvhoE'
+consumer_key = 'Rzrjeug9nqq0lIL9XPp48V9Ab'
+consumer_secret = 'QbWa2w8WSMy5pfuTAkXnWLZGcIWjppAY46r69vD8ZI9RXp4fKz'
 
-access_token = '1404473074234372099-4LeZJqFjO17JXCROUs9apQrNxDgdRp'
-access_token_secret = 'DTbsS1jHixwToEwb1PEQVrdUpU9lVnkoBomTx6SDA4u0R'
+access_token = '1404473074234372099-y8uChSmEpfr2QV5f1OoOE7tDTzIzzG'
+access_token_secret = 'jBYUwm7Ga0wlQ94gHHQR6uACsCQsc3i919cDqhCbg0svY'
 
+## Auhtorize the account
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+## Sets me as the user and then lets me check if it is connected by printing my name
 user = api.me()
 print(user.name)
 
+# Follows everyone back who follows me!
 for follower in tweepy.Cursor(api.followers).items():
     follower.follow()
-    print("Followed everyone that is following " + user.name)
+print("Followed everyone that is following " + user.name)
 
+# Function to retrieve the timeline
 def retrieve_timeline( api, user ):
     return api.user_timeline(screen_name = user, include_rts = True)
 
+# gets the current time
 CURRENT_TIME = datetime.datetime.utcnow()# - datetime.timedelta(30)
 
-#SEAN_NAME = "seanrubey15"
-message = "hello sean"
+# User name for possible user you want to favorite, retweet, or quote tweet
+USER_NAME = "tcostigan33"
+
+# Possible message if you want it consistent 
+message = "hey check out this cool bot thing"
+
 # create api object
 api = tweepy.API(auth, wait_on_rate_limit = True, wait_on_rate_limit_notify = True)
 
-# grab current timeline
-#sean_tweets = retrieve_timeline(api, SEAN_NAME)
+#grab current timeline
+user_tweets = retrieve_timeline(api, USER_NAME)
 
-#toReply = "seanrubey15" #user to get most recent tweet
-#api = tweepy.API(auth)
+## Allows you to automate dming a certain person
+DM_NAME = "tcostigan33"
+dm_id = api.get_user(DM_NAME)
+dm_user = dm_id.id_str
+api.send_direct_message(dm_user, "hello user")
 
-#dm_id = api.get_user(SEAN_NAME)
-#dm_user = user.id_str
-#api.send_direct_message(dm_user, "hello sean rubey")
+# This does in fact tweet this out on your account
+api.update_status("Did it work this time")
 
-#get the most recent tweet from the user
-#tweets = api.user_timeline(screen_name = toReply, count=11)
-#api.update_status(" HELLO @seanrubey15 check out this awesome link!! https://www.youtube.com/watch?v=XS7JElb-Jps")
-
-#for tweet in tweets:
-#    api.update_status("@" + toReply + " Wow that is so awesome Sean!", in_reply_to_status_id = tweet.id)
-count = 0
-while count < 10:
-    api.update_status("new tweet")
-    count += 1
-"""
 #run through tweets and retweets
-for tweet in sean_tweets:
+for tweet in user_tweets:
     #time_obj = datetime.datetime.strptime(tweet._json['created_at'][4:],"%b %d %H:%M:%S %z %Y" )
     if "RT" in tweet._json['text']:
-        #api.update_status("@seanrubey15 this is great, keep up the good work", in_reply_to_status_id = tweet.id)
+        # Prints out whatever the user has retweeted
         print(f"{tweet._json['user']['name']} retweeted {tweet._json['text'][2:]} at {tweet._json['created_at']}")
     else:
-        api.update_status("@" + SEAN_NAME + " super funny dude, keep up the good work", in_reply_to_status_id = tweet.id)
-        #tweet.retweet()
-        #tweet.favorite()
-        #api.send_direct_message(dm_user, "hey baby")
-        #tweet.unretweet()
-        #tweet.unfavorite()
-        #tweet.retweet()
+        # Replies to the user
+        api.update_status("@" + USER_NAME + " awesome tweet", in_reply_to_status_id = tweet.id)
+        # Retweets and favorites the user's tweet
+        tweet.retweet()
+        tweet.favorite()
+
+        # Prints out whatever they tweeted just like above
         #print(f"{tweet._json['user']['name']} tweeted {tweet._json['text']} at {tweet._json['created_at']}")
 
-#api.send_direct_message(SEAN_NAME, message)
-"""
