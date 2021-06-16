@@ -78,13 +78,88 @@ api.update_status(f"Bitcoin's current price: {btc} (USD) \n\t Prices obtained fr
 bitcoin\n\t Powered by CoinDesk")
 """
 btc = cryptocompare.get_price('BTC', currency = 'USD')['BTC']
-api.update_status(f"Bitcoin's current price: {btc['USD']} (USD) #Bitcoin #Crypto #BTC")
+try:
+    api.update_status(f"Bitcoin's current price: {btc['USD']} (USD) #Bitcoin #Crypto #BTC")
+except:
+    tweepy.TweepError
 
 eth = cryptocompare.get_price('ETH', currency = 'USD')['ETH']
-api.update_status(f"Ethereum's current price: {eth['USD']} (USD) #Ethereum #Crypto #ETH")
+try:
+    api.update_status(f"Ethereum's current price: {eth['USD']} (USD) #Ethereum #Crypto #ETH")
+except:
+    tweepy.TweepError
 
 doge = cryptocompare.get_price('DOGE', currency = 'USD')['DOGE']
-api.update_status(f"Dogecoin's current price: {doge['USD']} (USD) #Dogecoin #Crypto #DOGE")
+try:
+    api.update_status(f"Dogecoin's current price: {doge['USD']} (USD) #Dogecoin #Crypto #DOGE")
+except:
+    tweepy.TweepError
 
 safemoon = cryptocompare.get_price('SAFEMOON', currency = 'USD')['SAFEMOON']
-api.update_status(f"Safemoon's current price: {safemoon['USD']} (USD) #Safemoon #Crypto #SAFEMOON")
+try:
+    api.update_status(f"Safemoon's current price: {safemoon['USD']} (USD) #Safemoon #Crypto #SAFEMOON")
+except:
+    tweepy.TweepError
+
+
+search = "What is Bitcoin's price"
+numberOfTweets = 5
+phrase = f"Bitcoin's current price: {btc['USD']} (USD) #Bitcoin"
+for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+    try:
+        tweetId = tweet.user.id
+        username = tweet.user.screen_name
+        api.update_status("@" + username + " " + phrase, in_reply_to_status_id = tweet.id)
+        print ("Replied with " + phrase)
+
+    except tweepy.TweepError as e:
+        print(e.reason)
+    except StopIteration:
+        break
+
+"""
+
+Chunk of Code will search for the given item word and retweet the number of tweets you want 
+that contains that word  -- code found on medium.com/free-code-camp/creating-a-twitter-bot...
+
+search = "Crypto"
+numberOfTweets = 1
+for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+    try:
+        tweet.retweet()
+        print('Retweeted the tweet')
+    except tweepy.TweepError as e:
+        print(e.reason)
+    except StopIteration:
+        break
+search = "Ethereum"
+numberOfTweets = 1
+for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+    try:
+        tweet.retweet()
+        print('Retweeted the tweet')
+    except tweepy.TweepError as e:
+        print(e.reason)
+    except StopIteration:
+        break
+search = "Dogecoin"
+numberOfTweets = 1
+for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+    try:
+        tweet.retweet()
+        print('Retweeted the tweet')
+    except tweepy.TweepError as e:
+        print(e.reason)
+    except StopIteration:
+        break
+search = "Safemoon"
+numberOfTweets = 1
+for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+    try:
+        tweet.retweet()
+        print('Retweeted the tweet')
+    except tweepy.TweepError as e:
+        print(e.reason)
+    except StopIteration:
+        break
+"""
