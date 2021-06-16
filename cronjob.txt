@@ -1,0 +1,6 @@
+*/15 * * * * /usr/local/bin/python3 /Users/YOUR_NAME/Projects/TwitterBot/twitterbot.py 
+
+This is the cronjob used to tell the bot to post every fifteen minutes of the hour
+Downside this only runs when I am on my computer -- Brightside I could not figure out any free servers
+
+Handle for the Bot is @CryptoPricing
