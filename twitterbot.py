@@ -3,6 +3,7 @@ import datetime
 import os
 import requests
 import cryptocompare
+import time:
 #import reddit.py
 #import Tkinter
 
@@ -113,6 +114,8 @@ try:
                   \t#Bitcoin #Dogecoin #Ethereum #Safemoon #Crypto")
 except:
     tweepy.TweepError
+
+time.sleep(900)
 """
 search = "What is Bitcoin's price"
 numberOfTweets = 5
