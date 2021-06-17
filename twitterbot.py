@@ -108,11 +108,7 @@ except:
     tweepy.TweepError
 """
 try:
-    api.update_status(f"\tBitcoin Price (USD): {btc['USD']} \n \
-                  Ethereum Price (USD): {eth['USD']} \n \
-                  Dogecoin Price (USD): {doge['USD']} \n \
-                  Safemoon Price (USD): {safemoon['USD']} \
-                  \t#Bitcoin #Dogecoin #Ethereum #Safemoon #Crypto")
+    api.update_status(f"\tBitcoin Price (USD): {btc['USD']} \nEthereum Price (USD): {eth['USD']} \nDogecoin Price (USD): {doge['USD']} \nSafemoon Price (USD): {safemoon['USD']} \n#Bitcoin #Dogecoin #Ethereum #Safemoon #Crypto")
 except:
     tweepy.TweepError
 
