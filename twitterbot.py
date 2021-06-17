@@ -78,30 +78,42 @@ api.update_status(f"Bitcoin's current price: {btc} (USD) \n\t Prices obtained fr
 bitcoin\n\t Powered by CoinDesk")
 """
 btc = cryptocompare.get_price('BTC', currency = 'USD')['BTC']
+"""
 try:
     api.update_status(f"Bitcoin's current price: {btc['USD']} (USD) #Bitcoin #Crypto #BTC")
 except:
     tweepy.TweepError
-
+"""
 eth = cryptocompare.get_price('ETH', currency = 'USD')['ETH']
+"""
 try:
     api.update_status(f"Ethereum's current price: {eth['USD']} (USD) #Ethereum #Crypto #ETH")
 except:
     tweepy.TweepError
-
+"""
 doge = cryptocompare.get_price('DOGE', currency = 'USD')['DOGE']
+"""
 try:
     api.update_status(f"Dogecoin's current price: {doge['USD']} (USD) #Dogecoin #Crypto #DOGE")
 except:
     tweepy.TweepError
-
+"""
 safemoon = cryptocompare.get_price('SAFEMOON', currency = 'USD')['SAFEMOON']
+"""
 try:
     api.update_status(f"Safemoon's current price: {safemoon['USD']} (USD) #Safemoon #Crypto #SAFEMOON")
 except:
     tweepy.TweepError
-
-
+"""
+try:
+    api.update_status(f"\tBitcoin Price (USD): {btc['USD']} \n \
+                  Ethereum Price (USD): {eth['USD']} \n \
+                  Dogecoin Price (USD): {doge['USD']} \n \
+                  Safemoon Price (USD): {safemoon['USD']} \
+                  \t#Bitcoin #Dogecoin #Ethereum #Safemoon #Crypto")
+except:
+    tweepy.TweepError
+"""
 search = "What is Bitcoin's price"
 numberOfTweets = 5
 phrase = f"Bitcoin's current price: {btc['USD']} (USD) #Bitcoin"
@@ -116,7 +128,7 @@ for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
         print(e.reason)
     except StopIteration:
         break
-
+"""
 """
 
 Chunk of Code will search for the given item word and retweet the number of tweets you want 
