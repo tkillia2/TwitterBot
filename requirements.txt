@@ -1,5 +1,4 @@
 tweepy
 datetime
-os
 requests
 cryptocompare
