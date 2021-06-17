@@ -9,11 +9,11 @@ import time
 #import Tkinter
 
 
-consumer_key = ''
-consumer_secret = ''
+consumer_key = 'Rzrjeug9nqq0lIL9XPp48V9Ab'
+consumer_secret = 'QbWa2w8WSMy5pfuTAkXnWLZGcIWjppAY46r69vD8ZI9RXp4fKz'
 
-access_token = ''
-access_token_secret = ''
+access_token = '1404473074234372099-y8uChSmEpfr2QV5f1OoOE7tDTzIzzG'
+access_token_secret = 'jBYUwm7Ga0wlQ94gHHQR6uACsCQsc3i919cDqhCbg0svY'
 
 ## Auhtorize the account
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
