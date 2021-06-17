@@ -4,6 +4,7 @@ import os
 import requests
 import cryptocompare
 import time
+
 #import reddit.py
 #import Tkinter
 
