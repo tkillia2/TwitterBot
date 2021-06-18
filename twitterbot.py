@@ -25,9 +25,12 @@ user = api.me()
 print(user.name)
 
 # Follows everyone back who follows me!
+"""
+I guess this violates twitter's following rules? got banned for three days??
 for follower in tweepy.Cursor(api.followers).items():
     follower.follow()
 print("Followed everyone that is following " + user.name)
+"""
 
 # Function to retrieve the timeline
 def retrieve_timeline( api, user ):
