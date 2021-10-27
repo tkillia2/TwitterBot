@@ -13,5 +13,5 @@ pprint.pprint(price['USD'])
 Namelist = cryptocompare.get_coin_list(format=True)
 
 for name in Namelist:
-    if name == 'SAFEMOON':
+    if name == 'SHIB':
         print('yep')

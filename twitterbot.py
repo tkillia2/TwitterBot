@@ -110,8 +110,9 @@ try:
 except:
     tweepy.TweepError
 """
+shiba = cryptocompare.get_price('SHIB', currency = 'USD')['SHIB']
 try:
-    api.update_status(f"\tBitcoin Price (USD): {btc['USD']} \nEthereum Price (USD): {eth['USD']} \nDogecoin Price (USD): {doge['USD']} \nSafemoon Price (USD): {safemoon['USD']} \n#Bitcoin #Dogecoin #Ethereum #Safemoon #Crypto")
+    api.update_status(f"\tBitcoin Price (USD): {btc['USD']} \nEthereum Price (USD): {eth['USD']} \nDogecoin Price (USD): {doge['USD']} \nSafemoon Price (USD): {safemoon['USD']} \n SHIBA Price (USD): {shiba['USD']} \n#Bitcoin #Dogecoin #Ethereum #Safemoon #Shiba #Crypto")
 except:
     tweepy.TweepError
 
