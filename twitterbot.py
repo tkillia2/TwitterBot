@@ -109,7 +109,7 @@ try:
 except:
     tweepy.errors.TweepyException
 print(safemoon)
-time.sleep(3600)
+time.sleep(1800)
 """
 search = "What is Bitcoin's price"
 numberOfTweets = 5
