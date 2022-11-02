@@ -4,25 +4,17 @@ import os
 import requests
 import cryptocompare
 import time
+import config
 
-#import reddit.py
-#import Tkinter
-
-
-consumer_key = 'Rzrjeug9nqq0lIL9XPp48V9Ab'
-consumer_secret = 'QbWa2w8WSMy5pfuTAkXnWLZGcIWjppAY46r69vD8ZI9RXp4fKz'
-
-access_token = '1404473074234372099-y8uChSmEpfr2QV5f1OoOE7tDTzIzzG'
-access_token_secret = 'jBYUwm7Ga0wlQ94gHHQR6uACsCQsc3i919cDqhCbg0svY'
 
 ## Auhtorize the account
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+auth.set_access_token(config.access_token, config.access_token_secret)
 api = tweepy.API(auth)
 
 ## Sets me as the user and then lets me check if it is connected by printing my name
-user = api.me()
-print(user.name)
+#user = api.verify_credentials()
+# print(user.name)
 
 # Follows everyone back who follows me!
 """
@@ -112,11 +104,12 @@ except:
 """
 shiba = cryptocompare.get_price('SHIB', currency = 'USD')['SHIB']
 try:
-    api.update_status(f"\tBitcoin Price (USD): {btc['USD']} \nEthereum Price (USD): {eth['USD']} \nDogecoin Price (USD): {doge['USD']} \nSafemoon Price (USD): {safemoon['USD']} \n SHIBA Price (USD): {shiba['USD']} \n#Bitcoin #Dogecoin #Ethereum #Safemoon #Shiba #Crypto")
+    print('merp')
+    api.update_status(f"\tBitcoin Price (USD): {btc['USD']} \nEthereum Price (USD): {eth['USD']} \nDogecoin Price (USD): {doge['USD']} \nSafemoon Price (USD): {safemoon['USD']} \nSHIBA Price (USD): {shiba['USD']} \n#Bitcoin #Dogecoin #Ethereum #Safemoon #Shiba #Crypto")
 except:
-    tweepy.TweepError
-
-time.sleep(900)
+    tweepy.errors.TweepyException
+print(safemoon)
+time.sleep(3600)
 """
 search = "What is Bitcoin's price"
 numberOfTweets = 5
